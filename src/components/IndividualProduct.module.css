@@ -1,0 +1,23 @@
+.h2 {
+    margin: 0px;
+    margin-bottom: 40px;
+    font-size: 36px;
+}
+
+.container {
+    margin: 40px;
+    display: flex;
+
+}
+
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+}
+
+p {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 16px;
+}
