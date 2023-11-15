@@ -1,0 +1,30 @@
+h2 {
+    margin: 20px;
+
+}
+
+.catBut {
+    font-size: 56px;
+    border: 4px solid rgb(70, 56, 56);
+    padding: 20px;
+    margin: 20px;
+    transition: 0.5s;
+    width: auto;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+
+}
+
+.catBut:hover {
+    background-color: rgb(70, 56, 56) ;
+    color: white;
+
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
