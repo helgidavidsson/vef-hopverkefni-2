@@ -1,29 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Products.module.css';
 import { Link } from 'react-router-dom';
+import { GetLimitedProducts } from './ApiFunctions';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
 
+  const limit = 6;
+
   useEffect(() => {
     const fetchData = async () => {
-      const API_URL = 'https://vef1-2023-h2-api-791d754dda5b.herokuapp.com/';
-      const url = new URL('products', API_URL);
-      url.searchParams.set('limit', '6');
-
       try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          console.error(
-            'Error fetching data:',
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-
-        const json = await response.json();
-        setProducts(json.items);
+        const products = await GetLimitedProducts(limit);
+        setProducts(products);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
