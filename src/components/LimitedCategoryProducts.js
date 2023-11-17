@@ -8,6 +8,7 @@ export default function LimitedCategoryProducts() {
 
   const limit = 3;
 
+  //Hér þarf einhvern veginn að finna ID á category vörunnar sem er lýst að ofan
   const categoryID = 3;
 
   useEffect(() => {

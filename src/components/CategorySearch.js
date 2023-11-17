@@ -7,6 +7,7 @@ export default function CategorySearch() {
   const [products, setProducts] = useState([]);
   const [categoryName, setCategoryName] = useState([]);
 
+  //Hér þarf að finna ID út frá því sem ýtt er á
   const categoryID = 4;
 
   useEffect(() => {
