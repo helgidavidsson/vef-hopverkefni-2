@@ -47,3 +47,27 @@ export const GetIndividualProduct = async (productID) => {
     throw error;
   }
 };
+
+export const GetProductsFromCategory = async (categoryID, limit) => {
+  const url = new URL('products', API_URL);
+  url.searchParams.set('limit', `${limit}`);
+  url.searchParams.set('category', `${categoryID}`);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error(
+        'Error fetching data:',
+        response.status,
+        response.statusText
+      );
+      return;
+    }
+
+    const json = await response.json();
+    return json.items;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
