@@ -149,3 +149,32 @@ export const GetCategoryName = async (categoryID) => {
     throw error;
   }
 };
+
+export const GetCategoryID = async (categoryName) => {
+  const url = new URL('categories', API_URL);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error(
+        'Error fetching data:',
+        response.status,
+        response.statusText
+      );
+      return;
+    }
+
+    const json = await response.json();
+    const categories = json.items;
+
+    for (const category of categories) {
+      if (category.title === categoryName) {
+        return category.id;
+      }
+    }
+    return 'category not found';
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
