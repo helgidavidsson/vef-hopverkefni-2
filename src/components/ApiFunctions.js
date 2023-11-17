@@ -3,6 +3,8 @@ const API_URL = 'https://vef1-2023-h2-api-791d754dda5b.herokuapp.com/';
 export const GetNewProducts = async () => {
   const url = new URL('products', API_URL);
   url.searchParams.set('offset', `10`);
+  url.searchParams.set('limit', `51`);
+  console.log(url);
 
   try {
     const response = await fetch(url);
