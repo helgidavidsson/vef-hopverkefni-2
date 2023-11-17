@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './IndividualProduct.module.css';
-import CategoryProducts from './CategoryProducts';
+import LimitedCategoryProducts from './LimitedCategoryProducts';
 import { GetIndividualProduct } from './ApiFunctions';
 
 export default function IndividualProduct() {
@@ -31,12 +31,13 @@ export default function IndividualProduct() {
           <h2 className={styles.h2}>{product.title}</h2>
 
           <p>{product.category_title}</p>
-          <p>{product.price}</p>
+          <p>{product.price} kr.-</p>
 
           <p>{product.description}</p>
         </div>
       </div>
-      <CategoryProducts />
+      <h2 className={styles.h3}>Meira úr {product.category_title}</h2>
+      <LimitedCategoryProducts />
     </div>
   );
 }

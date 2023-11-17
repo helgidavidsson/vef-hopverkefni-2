@@ -1,9 +1,9 @@
-import { GetProductsFromCategory } from './ApiFunctions';
+import { GetLimitedProductsFromCategory } from './ApiFunctions';
 import React, { useEffect, useState } from 'react';
 import styles from './Products.module.css';
 import { Link } from 'react-router-dom';
 
-export default function CategoryProducts() {
+export default function LimitedCategoryProducts() {
   const [products, setProducts] = useState([]);
 
   const limit = 3;
@@ -13,7 +13,10 @@ export default function CategoryProducts() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const products = await GetProductsFromCategory(categoryID, limit);
+        const products = await GetLimitedProductsFromCategory(
+          categoryID,
+          limit
+        );
         setProducts(products);
       } catch (error) {
         console.error('Error fetching data:', error);
