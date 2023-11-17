@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Products.module.css';
 import { Link } from 'react-router-dom';
-import { GetNewProducts } from './ApiFunctions';
+import { GetLimitedProducts } from './ApiFunctions';
 
-export default function Products() {
+export default function LimitedProducts() {
   const [products, setProducts] = useState([]);
+
+  const limit = 6;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const products = await GetNewProducts();
+        const products = await GetLimitedProducts(limit);
         setProducts(products);
       } catch (error) {
         console.error('Error fetching data:', error);

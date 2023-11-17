@@ -1,5 +1,28 @@
 const API_URL = 'https://vef1-2023-h2-api-791d754dda5b.herokuapp.com/';
 
+export const GetNewProducts = async () => {
+  const url = new URL('products', API_URL);
+  url.searchParams.set('offset', `10`);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error(
+        'Error fetching data:',
+        response.status,
+        response.statusText
+      );
+      return;
+    }
+
+    const json = await response.json();
+    return json.items;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
 export const GetLimitedProducts = async (limit) => {
   const url = new URL('products', API_URL);
   url.searchParams.set('limit', `${limit}`);
