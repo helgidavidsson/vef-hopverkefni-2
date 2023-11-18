@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { GetLimitedProductsFromCategory } from './ApiFunctions';
+import React, { useEffect, useState } from 'react';
 import styles from './Products.module.css';
 import { Link } from 'react-router-dom';
-import { GetNewProducts } from './ApiFunctions';
 
-export default function Products() {
+export default function LimitedCategoryProducts() {
   const [products, setProducts] = useState([]);
+
+  const limit = 3;
+
+  //Hér þarf einhvern veginn að finna ID á category vörunnar sem er lýst að ofan
+  const categoryID = 3;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const products = await GetNewProducts();
+        const products = await GetLimitedProductsFromCategory(
+          categoryID,
+          limit
+        );
         setProducts(products);
       } catch (error) {
         console.error('Error fetching data:', error);
