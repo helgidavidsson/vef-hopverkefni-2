@@ -19,7 +19,10 @@ function App() {
           <Route path='/new-products' element={<Products />} />
           <Route path='/categories' element={<Categories />} />
           <Route path='/product' element={<IndividualProduct />} />
-          <Route path='/search' element={<CategorySearch />} />
+          <Route
+            path='/category-search/:categoryID'
+            element={<CategorySearch />}
+          />
         </Routes>
       </Router>
     </div>
