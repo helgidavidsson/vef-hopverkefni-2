@@ -159,8 +159,6 @@ export const GetCategoryName = async (categoryID) => {
 export const GetCategoryID = async (productID) => {
   const product = await GetIndividualProduct(productID);
 
-  console.log('prod', product);
-
   const catID = product.category_id;
 
   return catID;
