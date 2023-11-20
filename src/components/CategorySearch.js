@@ -1,14 +1,14 @@
 import { GetProductsInCategory, GetCategoryName } from './ApiFunctions';
 import React, { useEffect, useState } from 'react';
 import styles from './Products.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function CategorySearch() {
   const [products, setProducts] = useState([]);
   const [categoryName, setCategoryName] = useState([]);
 
-  //Hér þarf að finna ID út frá því sem ýtt er á
-  const categoryID = 4;
+  //Hér þarf að finna ID út frá því sem ýtt er á //KANNSKI KOMIÐ
+  const { categoryID } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +27,7 @@ export default function CategorySearch() {
 
   return (
     <div>
-      <h2 className={styles.h2}>Meira úr {categoryName}</h2>
+      <h2 className={styles.h2}>{categoryName}</h2>
       <div className={styles.grid}>
         {products.map((product) => (
           <Link

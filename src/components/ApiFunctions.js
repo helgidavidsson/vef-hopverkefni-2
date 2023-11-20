@@ -123,6 +123,10 @@ export const GetProductsInCategory = async (categoryID) => {
 
 export const GetCategoryName = async (categoryID) => {
   const url = new URL('categories', API_URL);
+  url.searchParams.set('limit', '15');
+  console.log('mdakjsbnfd', categoryID);
+
+  const ID = parseInt(categoryID);
 
   try {
     const response = await fetch(url);
@@ -139,7 +143,8 @@ export const GetCategoryName = async (categoryID) => {
     const categories = json.items;
 
     for (const category of categories) {
-      if (category.id === categoryID) {
+      console.log(category.id);
+      if (category.id === ID) {
         return category.title;
       }
     }
