@@ -1,22 +1,24 @@
-import { GetProductsInCategory, GetCategoryName } from './ApiFunctions';
+import { GetLimitedProductsFromCategory } from './ApiFunctions';
 import React, { useEffect, useState } from 'react';
 import styles from './Products.module.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function CategorySearch() {
+export default function LimitedCategoryProducts() {
   const [products, setProducts] = useState([]);
-  const [categoryName, setCategoryName] = useState([]);
 
-  //Hér þarf að finna ID út frá því sem ýtt er á //KANNSKI KOMIÐ
-  const { categoryID } = useParams();
+  const limit = 3;
+
+  //Hér þarf einhvern veginn að finna ID á category vörunnar sem er lýst að ofan
+  const categoryID = 3;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const products = await GetProductsInCategory(categoryID);
+        const products = await GetLimitedProductsFromCategory(
+          categoryID,
+          limit
+        );
         setProducts(products);
-        const catName = await GetCategoryName(categoryID);
-        setCategoryName(catName);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -27,7 +29,6 @@ export default function CategorySearch() {
 
   return (
     <div>
-      <h2 className={styles.h2}>{categoryName}</h2>
       <div className={styles.grid}>
         {products.map((product) => (
           <Link

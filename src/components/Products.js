@@ -1,40 +1,51 @@
-import styles from './Products.module.css'
+import React, { useState, useEffect } from 'react';
+import styles from './Products.module.css';
 import { Link } from 'react-router-dom';
+import { GetNewProducts } from './ApiFunctions';
 
 export default function Products() {
+  const [products, setProducts] = useState([]);
 
-  //HÉR ÞARF AÐ EYÐA DUMMYDATA OG FETCHA RÉTT GÖGN
-    const dummyData = [
-        { name: "Vara1", price: 635, category: "Sports", imageSrc: "/black.jpg"},
-        { name: "Vara2", price: 358, category: "Shoes", imageSrc: "/black.jpg" },
-        { name: "Vara3", price: 358, category: "Shoes", imageSrc: "/black.jpg" },
-        { name: "Nafn", price: 358, category: "Shoes", imageSrc: "/black.jpg"},
-        { name: "Nafn", price: 358, category: "Shoes", imageSrc: "/black.jpg" },
-        { name: "Nafn", price: 358, category: "Shoes", imageSrc: "/black.jpg"},
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const products = await GetNewProducts();
+        setProducts(products);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-    
-      ];
+    fetchData();
+  }, []);
 
-      const products = dummyData;
-
-    return(
-      <div>
+  return (
+    <div>
       <div className={styles.grid}>
-          {products.map(product => (
-              <Link to={`/product`} key={product.name} className={styles.link} name={product.name}>
-                  <div className={styles.item}>
-                      <img src={product.imageSrc} alt={product.name} className={styles.img} />
-                      <div className={styles.wrapper}>
-                          <div>
-                              <h3 className={styles.title}>{product.name}</h3>
-                              <p className={styles.category}>{product.category}</p>
-                          </div>
-                          <p className={styles.price}>{product.price} kr.-</p>
-                      </div>
-                  </div>
-              </Link>
-          ))}
+        {products.map((product) => (
+          <Link
+            to={`/product`}
+            key={product.title}
+            className={styles.link}
+            name={product.title}
+          >
+            <div className={styles.item}>
+              <img
+                src={product.image}
+                alt={product.title}
+                className={styles.img}
+              />
+              <div className={styles.wrapper}>
+                <div>
+                  <h3 className={styles.title}>{product.title}</h3>
+                  <p className={styles.category}>{product.category_title}</p>
+                </div>
+                <p className={styles.price}>{product.price} kr.-</p>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
-  </div>
-    )
+    </div>
+  );
 }
