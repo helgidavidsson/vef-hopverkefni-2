@@ -6,6 +6,7 @@ import Categories from './components/Categories';
 import Header from './components/Header';
 import IndividualProduct from './components/IndividualProduct';
 import CategorySearch from './components/CategorySearch';
+import AllProducts from './components/AllProducts';
 import React from 'react';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             path='/category-search/:categoryID'
             element={<CategorySearch />}
           />
+          <Route path='/products' element={<AllProducts />} />
         </Routes>
       </Router>
     </div>

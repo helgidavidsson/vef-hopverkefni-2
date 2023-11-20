@@ -3,10 +3,10 @@ import styles from './Products.module.css';
 import { Link } from 'react-router-dom';
 import { GetLimitedProducts } from './ApiFunctions';
 
-export default function LimitedProducts() {
+export default function AllProducts() {
   const [products, setProducts] = useState([]);
 
-  const limit = 6;
+  const limit = 1000;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,10 +47,10 @@ export default function LimitedProducts() {
             </div>
           </Link>
         ))}
-        <Link to={`/products`} className={styles.button}>
-          Skoða allar vörur
-        </Link>
       </div>
+      <Link to={'/'} className={styles.button}>
+        Aftur á forsíðu
+      </Link>
     </div>
   );
 }

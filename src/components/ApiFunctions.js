@@ -5,7 +5,6 @@ export const GetNewProducts = async () => {
   const url = new URL('products', API_URL);
   url.searchParams.set('offset', `10`);
   url.searchParams.set('limit', `51`);
-  console.log(url);
 
   try {
     const response = await fetch(url);
@@ -102,8 +101,6 @@ export const GetProductsInCategory = async (categoryID) => {
   const url = new URL('products', API_URL);
   url.searchParams.set('category', `${categoryID}`);
   url.searchParams.set('limit', '30');
-
-  console.log(url);
 
   try {
     const response = await fetch(url);
