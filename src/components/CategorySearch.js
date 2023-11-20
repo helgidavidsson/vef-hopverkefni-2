@@ -7,7 +7,6 @@ export default function CategorySearch() {
   const [products, setProducts] = useState([]);
   const [categoryName, setCategoryName] = useState([]);
 
-  //Hér þarf að finna ID út frá því sem ýtt er á //KANNSKI KOMIÐ
   const { categoryID } = useParams();
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export default function CategorySearch() {
     };
 
     fetchData();
-  }, []);
+  }, [categoryID]);
 
   return (
     <div>
@@ -31,7 +30,7 @@ export default function CategorySearch() {
       <div className={styles.grid}>
         {products.map((product) => (
           <Link
-            to={`/product`}
+            to={`/product/${product.id}`}
             key={product.title}
             className={styles.link}
             name={product.title}

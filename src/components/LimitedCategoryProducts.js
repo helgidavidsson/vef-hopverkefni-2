@@ -1,19 +1,18 @@
-import { GetLimitedProductsFromCategory } from './ApiFunctions';
+import { GetLimitedProductsFromCategory, GetCategoryID } from './ApiFunctions';
 import React, { useEffect, useState } from 'react';
 import styles from './Products.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function LimitedCategoryProducts() {
   const [products, setProducts] = useState([]);
+  const { productID } = useParams();
 
   const limit = 3;
-
-  //Hér þarf einhvern veginn að finna ID á category vörunnar sem er lýst að ofan
-  const categoryID = 3;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const categoryID = await GetCategoryID(productID);
         const products = await GetLimitedProductsFromCategory(
           categoryID,
           limit
@@ -32,7 +31,7 @@ export default function LimitedCategoryProducts() {
       <div className={styles.grid}>
         {products.map((product) => (
           <Link
-            to={`/product`}
+            to={`/product/${product.id}`}
             key={product.title}
             className={styles.link}
             name={product.title}

@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import styles from './IndividualProduct.module.css';
 import LimitedCategoryProducts from './LimitedCategoryProducts';
 import { GetIndividualProduct } from './ApiFunctions';
+import { useParams } from 'react-router-dom';
 
 export default function IndividualProduct() {
   const [products, setProducts] = useState([]);
+  const { productID } = useParams();
 
   //Hér þarf að bæta við virkni þegar id er fundið við að ýta á vöru
-  const ID = 57;
+  //const ID = 50;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const product = await GetIndividualProduct(ID);
+        const product = await GetIndividualProduct(productID);
         setProducts(product);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -20,7 +22,7 @@ export default function IndividualProduct() {
     };
 
     fetchData();
-  }, []);
+  }, [productID]);
 
   const product = products;
 
