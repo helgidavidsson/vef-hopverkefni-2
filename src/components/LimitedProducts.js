@@ -26,7 +26,7 @@ export default function LimitedProducts() {
       <div className={styles.grid}>
         {products.map((product) => (
           <Link
-            to={`/product`}
+            to={`/product/${product.id}`}
             key={product.title}
             className={styles.link}
             name={product.title}

@@ -101,6 +101,9 @@ export const GetLimitedProductsFromCategory = async (categoryID, limit) => {
 export const GetProductsInCategory = async (categoryID) => {
   const url = new URL('products', API_URL);
   url.searchParams.set('category', `${categoryID}`);
+  url.searchParams.set('limit', '30');
+
+  console.log(url);
 
   try {
     const response = await fetch(url);
@@ -124,7 +127,6 @@ export const GetProductsInCategory = async (categoryID) => {
 export const GetCategoryName = async (categoryID) => {
   const url = new URL('categories', API_URL);
   url.searchParams.set('limit', '15');
-  console.log('mdakjsbnfd', categoryID);
 
   const ID = parseInt(categoryID);
 
@@ -143,7 +145,6 @@ export const GetCategoryName = async (categoryID) => {
     const categories = json.items;
 
     for (const category of categories) {
-      console.log(category.id);
       if (category.id === ID) {
         return category.title;
       }
@@ -155,31 +156,12 @@ export const GetCategoryName = async (categoryID) => {
   }
 };
 
-export const GetCategoryID = async (categoryName) => {
-  const url = new URL('categories', API_URL);
+export const GetCategoryID = async (productID) => {
+  const product = await GetIndividualProduct(productID);
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.error(
-        'Error fetching data:',
-        response.status,
-        response.statusText
-      );
-      return;
-    }
+  console.log('prod', product);
 
-    const json = await response.json();
-    const categories = json.items;
+  const catID = product.category_id;
 
-    for (const category of categories) {
-      if (category.title === categoryName) {
-        return category.id;
-      }
-    }
-    return 'category not found';
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
+  return catID;
 };

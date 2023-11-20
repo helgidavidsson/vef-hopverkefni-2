@@ -7,7 +7,6 @@ export default function CategorySearch() {
   const [products, setProducts] = useState([]);
   const [categoryName, setCategoryName] = useState([]);
 
-  //Hér þarf að finna ID út frá því sem ýtt er á //KANNSKI KOMIÐ
   const { categoryID } = useParams();
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export default function CategorySearch() {
     };
 
     fetchData();
-  }, []);
+  }, [categoryID]);
 
   return (
     <div>
