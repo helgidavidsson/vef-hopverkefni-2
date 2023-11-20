@@ -8,9 +8,6 @@ export default function IndividualProduct() {
   const [products, setProducts] = useState([]);
   const { productID } = useParams();
 
-  //Hér þarf að bæta við virkni þegar id er fundið við að ýta á vöru
-  //const ID = 50;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
